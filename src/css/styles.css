@@ -1,0 +1,34 @@
+li {
+    list-style-type: none;
+}
+
+.text-white {
+    color: white
+}
+
+.text-white li {
+    margin-top: 6px;
+}
+
+.input-border{
+    border: none;
+    border-color: none;
+}
+
+.input-border::after {
+    border: none;
+
+}
+
+.pointeur {
+    cursor: pointer;
+}
+
+.card-tag {
+    padding: 20px !important;
+}
+
+.card-tag-choose {
+    /* padding: 5px !important; */
+    border-radius: 10px;
+}
