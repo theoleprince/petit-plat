@@ -1,32 +1,31 @@
 import { CardPlat } from "./card-plat.js";
-
+import { rechercheGenerale } from "./recherche-general.js";
+var dataIngredients = [];
+var dataAppareils = [];
+var dataUstensils = [];
 export function ingredients(recettes) {
     var data = [];
     recettes.forEach(function (elt) {
         elt.ingredients.forEach(function (item) {
-            if (!data.includes(item.ingredient)) {
+            if (!data.some(elt => elt.toLowerCase().includes(item.ingredient.toLowerCase()))) {
                 data.push(item.ingredient);
             }
         });
     })
     tagIngredients(data);
     searchTag(data);
-    selectTag()
+    // selectTag()
 }
 
 export function appareils(recettes) {
     var data = [];
     recettes.forEach(function (elt) {
-        console.log(elt);
         if (!data.includes(elt.appliance)) {
             data.push(elt.appliance);
-            console.log(data);
         }
     })
-    console.log(data);
     tagAppareils(data);
-    searchTag(data);
-    selectTag()
+    searchTagAppareil(data);
 }
 
 export function ustensils(recettes) {
@@ -39,10 +38,9 @@ export function ustensils(recettes) {
         })
     })
     tagUstensils(data);
-    searchTag(data);
-    selectTag()
+    searchTagUstensil(data);
 }
-
+// Ingredients
 export function tagIngredients(ingredients) {
     var dataIngrdient = document.getElementById('option-ingredient');
     dataIngrdient.innerHTML = '';
@@ -55,6 +53,36 @@ export function tagIngredients(ingredients) {
 
 }
 
+export function searchTag(dataTags) {
+    var searchTag = document.querySelector('.search-tag');
+    searchTag.addEventListener("keyup", (event) => {
+        const result = dataTags.filter(item =>
+            item.toLowerCase().includes(event.target.value.toLowerCase())
+        );
+        tagIngredients(result);
+    })
+}
+
+export function selectTag() {
+    var selectTag = document.querySelector('#option-ingredient');
+    var chooseTag = document.querySelector('#choose-ingredient');
+    var data = [];
+    selectTag.addEventListener("click", (event) => {
+        chooseTag.innerHTML = '';
+        const item = event.target.outerText;
+        if (!data.some(elt => elt.toLowerCase().includes(item.toLowerCase()))) {
+            data.push(item);
+        }
+        data.forEach(item => {
+            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+        })
+        dataIngredients = data;
+        ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
+    });
+}
+
+
+// Appareils
 export function tagAppareils(appareils) {
     var dataAppareil = document.getElementById('option-appareil');
     dataAppareil.innerHTML = '';
@@ -66,7 +94,36 @@ export function tagAppareils(appareils) {
     });
 
 }
+export function searchTagAppareil(dataTags) {
+    const searchTag = document.querySelector('.search-tag-appareil');
+    searchTag.addEventListener("keyup", (event) => {
+        const result = dataTags.filter(item =>
+            item.toLowerCase().includes(event.target.value.toLowerCase())
+        );
+        tagAppareils(result);
+    })
+}
 
+export function selectTagAppareil() {
+    var selectTagIng = document.querySelector('#option-appareil');
+    var chooseTag = document.querySelector('#choose-appareil');
+    var data = [];
+    selectTagIng.addEventListener("click", (event) => {
+        chooseTag.innerHTML = '';
+        const item = event.target.outerText;
+        if (!data.some(elt => elt.toLowerCase().includes(item.toLowerCase()))) {
+            data.push(item);
+        }
+        data.forEach(item => {
+            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+        })
+        dataAppareils = data;
+        ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
+    });
+}
+
+
+// Ustensils
 export function tagUstensils(ustensils) {
     var dataUstensil = document.getElementById('option-ustensil');
     dataUstensil.innerHTML = '';
@@ -79,46 +136,71 @@ export function tagUstensils(ustensils) {
 
 }
 
-export function searchTag(dataTags) {
-    var searchTag = document.querySelector('.search-tag');
+export function searchTagUstensil(dataTags) {
+    var searchTag = document.querySelector('.search-tag-ustensil');
     searchTag.addEventListener("keyup", (event) => {
         const result = dataTags.filter(item =>
             item.toLowerCase().includes(event.target.value.toLowerCase())
         );
-        console.log(result);
-        tagIngredients(result);
+        tagUstensils(result);
     })
 }
 
-export function selectTag() {
-    var selectTag = document.querySelector('#option-ingredient');
-    var chooseTag = document.querySelector('#choose-ingredient');
-    selectTag.addEventListener("click", (event) => {
-        console.log(event.target.outerText)
-        chooseTag.innerHTML = event.target.outerText + '  ' + '<i class="fa fa-times-circle" aria-hidden="true"></i>';
-        rechercheGeneraleByTag(event.target.outerText)
-    })
+export function selectTagUstensil() {
+    var selectTagIng = document.querySelector('#option-ustensil');
+    var chooseTag = document.querySelector('#choose-ustensil');
+    var data = [];
+    selectTagIng.addEventListener("click", (event) => {
+        chooseTag.innerHTML = '';
+        const item = event.target.outerText;
+        if (!data.some(elt => elt.toLowerCase().includes(item.toLowerCase()))) {
+            data.push(item);
+        }
+        data.forEach(item => {
+            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+        })
+
+        dataUstensils = data;
+        ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
+        // retirerTag(data)
+    });
 }
 
-export function rechercheGeneraleByTag(tag) {
+export function ActualiseGeneraleByTag(ingredientsData, appareilsData, ustensilsData) {
+   let tagIngredients = Array.from(ingredientsData)
+   let tagAppareils = Array.from(appareilsData)
+   let tagUstensils = Array.from(ustensilsData)
+    console.log(`Ingredient ${tagIngredients}, Appareils ${tagAppareils}, Ustensils ${tagUstensils}`)
     var data = document.getElementById('data');
-    // var searchGeneral = document.getElementById('search-general');
-    // searchGeneral.addEventListener("keyup", (event) => {
-    //     console.log(event.target.value);
-    //     if(event.target.value.length >= 3) {
+    var dataRecipes = recipes;
     data.innerHTML = '';
-    const result = recipes.filter(item =>
-        item.ingredients.some(elt => elt.ingredient.toLowerCase().includes(tag.toLowerCase()))
+    const resultIngre = dataRecipes.filter(item =>
+        tagIngredients.length > 0 ?  tagIngredients.every(element => item.ingredients.some(elt => elt.ingredient.toLowerCase().includes(element.toLowerCase()))) : true
     );
-    CardPlat(result);
-    ingredients(result);
-    // } else {
-    //     data.innerHTML = '';
-    //     CardPlat(recipes);
-    //     ingredients(recipes);
-    // }
+    console.log('resultIngre', resultIngre)
 
+    const resultApp = resultIngre.filter(item =>
+        tagAppareils.length > 0 ? tagAppareils.every(element => item.appliance.toLowerCase().includes(element.toLowerCase())) : true
+    );
+    console.log('resultApp', resultApp)
 
+    const resultUst = resultApp.filter(item =>
+        tagUstensils.length > 0 ? tagUstensils.every(element => item.ustensils.some(elt => elt.toLowerCase().includes(element.toLowerCase()))) : true
+    );
+    console.log('resultUst', resultUst);
+
+    CardPlat(resultUst);
+    ingredients(resultUst);
+    appareils(resultUst);
+    ustensils(resultUst);
+    rechercheGenerale(resultUst);
+}
+
+export function retirerTag(data) {
+    console.log(data)
+    // var documentIDClose = document.querySelector(idClose);
+    // var documentIDChooseTag = document.querySelector(idChooseTag);
+    // documentIDClose.addEventListener("click", (event) => {
+    //     console.log(event)
     // })
-
 }

@@ -1,13 +1,13 @@
 import {CardPlat} from './card-plat.js'
 import { appareils, ingredients, ustensils } from './ingredient.js';
-export function rechercheGenerale() {
+export function rechercheGenerale(recipesData) {
     var data = document.getElementById('data');
     var searchGeneral = document.getElementById('search-general');
     searchGeneral.addEventListener("keyup", (event) => {
         console.log(event.target.value);
         if(event.target.value.length >= 3) {
             data.innerHTML = '';
-            const result = recipes.filter(item => 
+            const result = recipesData.filter(item => 
                 item.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
                 item.description.toLowerCase().includes(event.target.value.toLowerCase()) ||
                 item.ingredients.some(elt => elt.ingredient.toLowerCase().includes(event.target.value.toLowerCase()))
@@ -18,10 +18,10 @@ export function rechercheGenerale() {
            ustensils(result)
         } else {
             data.innerHTML = '';
-            CardPlat(recipes);
-            ingredients(recipes);
-            appareils(recipes)
-            ustensils(recipes)
+            CardPlat(recipesData);
+            ingredients(recipesData);
+            appareils(recipesData)
+            ustensils(recipesData)
         }
       
         

@@ -24,18 +24,20 @@
                     aria-label="Recherche" aria-describedby="basic-addon2">
                 <span class="input-group-text"><i class="fa fa-search"></i></span>
             </div>
-            <div class="text-white row row-cols-auto">
-                    <span id="choose-ingredient" class="col bg-primary card-tag-choose mr-1"></span>
+            <div class="text-white row row-cols-auto pointeur">
+                    <span id="choose-ingredient" class="col bg-primary card-tag-choose mr-2"></span>
+                    <span id="choose-appareil" class="col bg-success card-tag-choose mr-2"></span>
+                    <span id="choose-ustensil" class="col bg-warning card-tag-choose mr-2"></span>
             </div>
             
 
-            <div class="row row-cols-auto mt-3">
+            <div class="row row-cols-auto mt-3 text-white">
                 <div class="col">
                     <div class="btn btn-primary card-tag" type="button" id="dropdown-button">
-                        ingredients <i class="fa fa-sort-down"></i>
+                        Ingredients <i class="fa fa-sort-down"></i>
                     </div>
                     <!-- Search Inputs -->
-                    <div class="bg-primary container-fluid" id="search-input" style="display: none;">
+                    <div class="bg-primary container-fluid card-element" id="search-input">
                         <div class="row">
                             <div class="col-md-11">
                                 <input type="text" class="bg-primary input-border search-tag text-white container-fluid"
@@ -48,7 +50,7 @@
                     </div>
 
                     <!-- Columns -->
-                    <div id="dropdown-options" class="bg-primary" style="display: none; width: 500px;">
+                    <div id="dropdown-options" class="bg-primary position-absolu card-element">
                         <ul class="text-white row" id="option-ingredient">
                         </ul>
                     </div>
@@ -58,10 +60,10 @@
                         Appareils <i class="fa fa-sort-down"></i>
                     </div>
                     <!-- Search Inputs -->
-                    <div class="bg-success container-fluid" id="search-input-appareil" style="display: none;">
+                    <div class="bg-success container-fluid card-element" id="search-input-appareil">
                         <div class="row">
                             <div class="col-md-11">
-                                <input type="text" class="bg-success input-border search-tag container-fluid"
+                                <input type="text" class="bg-success input-border search-tag-appareil container-fluid"
                                     placeholder="Recherche un appareil ">
                             </div>
                             <div class="col-md-1">
@@ -71,7 +73,7 @@
                     </div>
 
                     <!-- Columns -->
-                    <div id="dropdown-options-appareil" class="bg-secondary" style="display: none; width: 500px;">
+                    <div id="dropdown-options-appareil" class="bg-success position-absolu card-element">
                         <ul class="text-white row" id="option-appareil">
                         </ul>
                     </div>
@@ -82,10 +84,10 @@
                         Ustensiles <i class="fa fa-sort-down"></i>
                     </div>
                     <!-- Search Inputs -->
-                    <div class="bg-warning container-fluid" id="search-input-ustensil" style="display: none;">
+                    <div class="bg-warning container-fluid card-element" id="search-input-ustensil">
                         <div class="row">
                             <div class="col-md-11">
-                                <input type="text" class="bg-warning input-border search-tag container-fluid"
+                                <input type="text" class="bg-warning input-border search-tag-ustensil container-fluid"
                                     placeholder="Recherche un ustensil ">
                             </div>
                             <div class="col-md-1">
@@ -95,7 +97,7 @@
                     </div>
 
                     <!-- Columns -->
-                    <div id="dropdown-options-ustensil" class="bg-warning" style="display: none; width: 500px;">
+                    <div id="dropdown-options-ustensil" class="bg-warning position-absolu card-element">
                         <ul class="text-white row" id="option-ustensil">
                         </ul>
                     </div>
@@ -104,7 +106,7 @@
 
         </section>
         <section>
-            <div>
+            <div class="mt-3">
                 <div class="row" id="data"></div>
             </div>
         </section>

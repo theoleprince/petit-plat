@@ -9,10 +9,14 @@ export function toggleDropdown() {
       dropdownButton.style.display = 'inline-block';
       searchInput.style.display = 'none';
       dropdownOptions.style.display = 'none';
+      closeToggleDropdownAppareil();
+      closeToggleDropdownUstensil();
     } else {
       dropdownButton.style.display = 'none';
       searchInput.style.display = 'inline-block';
       dropdownOptions.style.display = 'block';
+      closeToggleDropdownAppareil();
+      closeToggleDropdownUstensil()
     }
   });
 
@@ -41,10 +45,14 @@ export function toggleDropdownAppareil() {
       dropdownButtonAppareil.style.display = 'inline-block';
       searchInputAppareil.style.display = 'none';
       dropdownOptions.style.display = 'none';
+      closeToggleDropdown();
+      closeToggleDropdownUstensil();
     } else {
       dropdownButtonAppareil.style.display = 'none';
       searchInputAppareil.style.display = 'inline-block';
       dropdownOptionsAppareil.style.display = 'block';
+      closeToggleDropdown();
+      closeToggleDropdownUstensil();
     }
   });
 
@@ -73,10 +81,14 @@ export function toggleDropdownUstensil() {
       dropdownButtonUstensil.style.display = 'inline-block';
       searchInputUstensil.style.display = 'none';
       dropdownOptionsUstensil.style.display = 'none';
+      closeToggleDropdown();
+      closeToggleDropdownAppareil();
     } else {
       dropdownButtonUstensil.style.display = 'none';
       searchInputUstensil.style.display = 'inline-block';
       dropdownOptionsUstensil.style.display = 'block';
+      closeToggleDropdown();
+      closeToggleDropdownAppareil();
     }
   });
 
@@ -91,5 +103,55 @@ export function toggleDropdownUstensil() {
       dropdownOptionsUstensil.style.display = 'block';
     }
   });
+
+}
+
+export function closeToggleDropdown() {
+  var dropdownButton = document.getElementById('dropdown-button');
+  var searchInput = document.getElementById('search-input');
+  var dropdownOptions = document.getElementById('dropdown-options');
+  var closeOptions = document.getElementById('close-options');
+    // if (dropdownButton.style.display === 'none') {
+      dropdownButton.style.display = 'inline-block';
+      searchInput.style.display = 'none';
+      dropdownOptions.style.display = 'none';
+    // } else {
+    //   dropdownButton.style.display = 'none';
+    //   searchInput.style.display = 'inline-block';
+    //   dropdownOptions.style.display = 'block';
+    // }
+}
+export function closeToggleDropdownAppareil() {
+  var dropdownButtonAppareil = document.getElementById('dropdown-button-appareil');
+  var searchInputAppareil = document.getElementById('search-input-appareil');
+  var dropdownOptionsAppareil = document.getElementById('dropdown-options-appareil');
+  var closeOptionsAppareil = document.getElementById('close-options-appareil');
+
+    // if (dropdownButtonAppareil.style.display === 'none') {
+      dropdownButtonAppareil.style.display = 'inline-block';
+      searchInputAppareil.style.display = 'none';
+      dropdownOptionsAppareil.style.display = 'none';
+    // } else {
+    //   dropdownButtonAppareil.style.display = 'none';
+    //   searchInputAppareil.style.display = 'inline-block';
+    //   dropdownOptionsAppareil.style.display = 'block';
+    // }
+
+}
+export function closeToggleDropdownUstensil() {
+  var dropdownButtonUstensil = document.getElementById('dropdown-button-ustensil');
+  var searchInputUstensil = document.getElementById('search-input-ustensil');
+  var dropdownOptionsUstensil = document.getElementById('dropdown-options-ustensil');
+  var closeOptionsUstensil = document.getElementById('close-options-ustensil');
+
+    // if (dropdownButtonUstensil.style.display === 'none') {
+      dropdownButtonUstensil.style.display = 'inline-block';
+      searchInputUstensil.style.display = 'none';
+      dropdownOptionsUstensil.style.display = 'none';
+    // } else {
+    //   dropdownButtonUstensil.style.display = 'none';
+    //   searchInputUstensil.style.display = 'inline-block';
+    //   dropdownOptionsUstensil.style.display = 'block';
+    // }
 
 }

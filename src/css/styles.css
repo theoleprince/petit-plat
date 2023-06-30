@@ -32,3 +32,26 @@ li {
     /* padding: 5px !important; */
     border-radius: 10px;
 }
+
+.position-absolu {
+    position: absolute;
+    z-index: 1;
+}
+
+.card-element {
+    display: none;
+     width: 500px !important;
+}
+
+input[type="text"] {
+    color: #F2F2F2;
+    font-weight: bold;
+  }
+
+  input::placeholder {
+    color: #F2F2F2;
+    opacity: 1;
+  }
+  input:placeholder-shown {
+    border: 1px solid #F2F2F2;
+  }
