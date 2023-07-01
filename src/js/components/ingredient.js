@@ -74,7 +74,7 @@ export function selectTag() {
             data.push(item);
         }
         data.forEach(item => {
-            chooseTag.innerHTML += `<span class="bg-primary card-tag-choose"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
+            chooseTag.innerHTML += `<span class="bg-primary card-tag-choose mr-2"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
         })
         dataIngredients = data;
         ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
@@ -116,7 +116,7 @@ export function selectTagAppareil() {
             data.push(item);
         }
         data.forEach(item => {
-            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" id=app-${cpt} onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+            chooseTag.innerHTML += `<span class="bg-success card-tag-choose mr-2"> ${item} <i class="fa fa-times-circle app" data-media-name="${item}";  aria-hidden="true"></i></span>`;
             cpt +=1
         })
         dataAppareils = data;
@@ -160,7 +160,7 @@ export function selectTagUstensil() {
             data.push(item);
         }
         data.forEach(item => {
-            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" id=ust-${cpt} onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+            chooseTag.innerHTML += `<span class="bg-warning card-tag-choose mr-2"> ${item} <i class="fa fa-times-circle ust" data-media-name="${item}";  aria-hidden="true"></i></span>`;
             cpt +=1;
         });
 
@@ -195,6 +195,8 @@ console.log(resultIngre)
     ustensils(resultUst);
     rechercheGenerale(resultUst);
     retirerTagIngredient();
+    retirerTagAppareil();
+    retirerTagUstensil();
 }
 
 export function retirerTagIngredient() {
@@ -212,22 +214,37 @@ export function retirerTagIngredient() {
             
         });
     });
-    // for(let i=0; i < dataIngredients.length; i++){
-    //     document.querySelector('#ingr-'+i).addEventListener("click", (event) => {
-    //         const balise = document.querySelector('#ingr-'+i);
-    //         // balise.remove();
-    //         const name = balise.parentNode;
-    //         const data = removeTagData(dataIngredients, 'name')
-    //         ActualiseGeneraleByTag(data, dataAppareils, dataUstensils);
-    //     });
-    // }
 }
 
-export function removeTagData(data, index) {
-    const data_tags_by_filters = Array.from(data);
-    // if (data_tags_by_filters.includes(name)) {
-        // const index = data_tags_by_filters.indexOf(name);
-        data_tags_by_filters.splice(index, 1);
-    // }
-    return data_tags_by_filters;
+export function retirerTagAppareil() {
+    var chooseTag = document.querySelector('#choose-appareil');
+    let AppItems = document.querySelectorAll(".app");
+    AppItems.forEach((item, i) => {
+        item.addEventListener("click", (event) => {
+            chooseTag.innerHTML = '';
+            dataAppareils.splice(i, 1);
+            dataAppareils.forEach(item => {
+                chooseTag.innerHTML += `<span class="bg-primary card-tag-choose"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
+            })
+            console.log(dataAppareils)
+            ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
+            
+        });
+    });
+}
+
+export function retirerTagUstensil() {
+    var chooseTag = document.querySelector('#choose-ustensil');
+    let UstItems = document.querySelectorAll(".ust");
+    UstItems.forEach((item, i) => {
+        item.addEventListener("click", (event) => {
+            chooseTag.innerHTML = '';
+            dataUstensils.splice(i, 1);
+            dataUstensils.forEach(item => {
+                chooseTag.innerHTML += `<span class="bg-warning card-tag-choose"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
+            })
+            ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
+            
+        });
+    });
 }
