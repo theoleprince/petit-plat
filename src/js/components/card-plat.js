@@ -7,7 +7,7 @@ export function CardPlat(recipes) {
         card = `<div class="col-md-4">
         <div class="card mb-3">
             <div class="card-header bg-secondary" style="height: 12rem;"></div>
-            <div class="card-body">
+            <div class="card-body" style="height: 18rem;">
                <div class="row">
                 <div class="col">
                     <h5 class="card-title">${elt.name}</h5>
@@ -20,7 +20,7 @@ export function CardPlat(recipes) {
       
                 <div class="col">
                     <h5 class="card-title text-end"><i class="fa fa-clock-o"></i> ${elt.time} min</h5>
-                    <p class="card-text">${truncate(elt.description, 140)}</p>
+                    <p class="card-text">${truncate(elt.description, 160)}</p>
                 </div>
                </div>
             </div>
