@@ -5,10 +5,10 @@ var dataAppareils = [];
 var dataUstensils = [];
 export function ingredients(recettes) {
     var data = [];
-    recettes.forEach(function (elt) {
-        elt.ingredients.forEach(function (item) {
-            if (!data.some(elt => elt.toLowerCase().includes(item.ingredient.toLowerCase()))) {
-                data.push(item.ingredient);
+    recettes.forEachTheo(function (elt) {
+        elt.ingredients.forEachTheo(function (item) {
+            if (!data.someTheo(elt => elt.toLowerCase().includesTheo(item.ingredient.toLowerCase()))) {
+                data.pushTheo(item.ingredient);
             }
         });
     })
@@ -19,9 +19,9 @@ export function ingredients(recettes) {
 
 export function appareils(recettes) {
     var data = [];
-    recettes.forEach(function (elt) {
-        if (!data.includes(elt.appliance)) {
-            data.push(elt.appliance);
+    recettes.forEachTheo(function (elt) {
+        if (!data.includesTheo(elt.appliance)) {
+            data.pushTheo(elt.appliance);
         }
     })
     tagAppareils(data);
@@ -30,10 +30,10 @@ export function appareils(recettes) {
 
 export function ustensils(recettes) {
     var data = [];
-    recettes.forEach(function (elt) {
+    recettes.forEachTheo(function (elt) {
         elt.ustensils.forEach(function (item) {
-            if (!data.includes(item)) {
-                data.push(item);
+            if (!data.includesTheo(item)) {
+                data.pushTheo(item);
             }
         })
     })
@@ -44,7 +44,7 @@ export function ustensils(recettes) {
 export function tagIngredients(ingredients) {
     var dataIngrdient = document.getElementById('option-ingredient');
     dataIngrdient.innerHTML = '';
-    ingredients.forEach(function (elt) {
+    ingredients.forEachTheo(function (elt) {
         const li = `
                 <li class="col-4">${elt}</li>
     `
@@ -56,8 +56,8 @@ export function tagIngredients(ingredients) {
 export function searchTag(dataTags) {
     var searchTag = document.querySelector('.search-tag');
     searchTag.addEventListener("keyup", (event) => {
-        const result = dataTags.filter(item =>
-            item.toLowerCase().includes(event.target.value.toLowerCase())
+        const result = dataTags.filterTheo(item =>
+            item.toLowerCase().includesTheo(event.target.value.toLowerCase())
         );
         tagIngredients(result);
     })
@@ -70,10 +70,10 @@ export function selectTag() {
     selectTag.addEventListener("click", (event) => {
         chooseTag.innerHTML = '';
         const item = event.target.outerText;
-        if (!data.some(elt => elt.toLowerCase().includes(item.toLowerCase()))) {
-            data.push(item);
+        if (!data.someTheo(elt => elt.toLowerCase().includesTheo(item.toLowerCase()))) {
+            data.pushTheo(item);
         }
-        data.forEach(item => {
+        data.forEachTheo(item => {
             chooseTag.innerHTML += `<span class="bg-primary card-tag-choose mr-2"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
         })
         dataIngredients = data;
@@ -86,7 +86,7 @@ export function selectTag() {
 export function tagAppareils(appareils) {
     var dataAppareil = document.getElementById('option-appareil');
     dataAppareil.innerHTML = '';
-    appareils.forEach(function (elt) {
+    appareils.forEachTheo(function (elt) {
         const li = `
                 <li class="col-4">${elt}</li>
     `
@@ -97,8 +97,8 @@ export function tagAppareils(appareils) {
 export function searchTagAppareil(dataTags) {
     const searchTag = document.querySelector('.search-tag-appareil');
     searchTag.addEventListener("keyup", (event) => {
-        const result = dataTags.filter(item =>
-            item.toLowerCase().includes(event.target.value.toLowerCase())
+        const result = dataTags.filterTheo(item =>
+            item.toLowerCase().includesTheo(event.target.value.toLowerCase())
         );
         tagAppareils(result);
     })
@@ -112,10 +112,10 @@ export function selectTagAppareil() {
     selectTagIng.addEventListener("click", (event) => {
         chooseTag.innerHTML = '';
         const item = event.target.outerText;
-        if (!data.some(elt => elt.toLowerCase().includes(item.toLowerCase()))) {
-            data.push(item);
+        if (!data.someTheo(elt => elt.toLowerCase().includesTheo(item.toLowerCase()))) {
+            data.pushTheo(item);
         }
-        data.forEach(item => {
+        data.forEachTheo(item => {
             chooseTag.innerHTML += `<span class="bg-success card-tag-choose mr-2"> ${item} <i class="fa fa-times-circle app" data-media-name="${item}";  aria-hidden="true"></i></span>`;
             cpt +=1
         })
@@ -129,7 +129,7 @@ export function selectTagAppareil() {
 export function tagUstensils(ustensils) {
     var dataUstensil = document.getElementById('option-ustensil');
     dataUstensil.innerHTML = '';
-    ustensils.forEach(function (elt) {
+    ustensils.forEachTheo(function (elt) {
         const li = `
                 <li class="col-4">${elt}</li>
     `
@@ -141,8 +141,8 @@ export function tagUstensils(ustensils) {
 export function searchTagUstensil(dataTags) {
     var searchTag = document.querySelector('.search-tag-ustensil');
     searchTag.addEventListener("keyup", (event) => {
-        const result = dataTags.filter(item =>
-            item.toLowerCase().includes(event.target.value.toLowerCase())
+        const result = dataTags.filterTheo(item =>
+            item.toLowerCase().includesTheo(event.target.value.toLowerCase())
         );
         tagUstensils(result);
     })
@@ -156,10 +156,10 @@ export function selectTagUstensil() {
     selectTagIng.addEventListener("click", (event) => {
         chooseTag.innerHTML = '';
         const item = event.target.outerText;
-        if (!data.some(elt => elt.toLowerCase().includes(item.toLowerCase()))) {
-            data.push(item);
+        if (!data.someTheo(elt => elt.toLowerCase().includesTheo(item.toLowerCase()))) {
+            data.pushTheo(item);
         }
-        data.forEach(item => {
+        data.forEachTheo(item => {
             chooseTag.innerHTML += `<span class="bg-warning card-tag-choose mr-2"> ${item} <i class="fa fa-times-circle ust" data-media-name="${item}";  aria-hidden="true"></i></span>`;
             cpt +=1;
         });
@@ -177,16 +177,16 @@ export function ActualiseGeneraleByTag(ingredientsData, appareilsData, ustensils
     var data = document.getElementById('data');
     var dataRecipes = recipes;
     data.innerHTML = '';
-    const resultIngre = dataRecipes.filter(item =>
-        tagIngredients.length > 0 ?  tagIngredients.every(element => item.ingredients.some(elt => elt.ingredient.toLowerCase().includes(element.toLowerCase()))) : true
+    const resultIngre = dataRecipes.filterTheo(item =>
+        tagIngredients.length > 0 ?  tagIngredients.everyTheo(element => item.ingredients.someTheo(elt => elt.ingredient.toLowerCase().includesTheo(element.toLowerCase()))) : true
     );
 console.log(resultIngre)
-    const resultApp = resultIngre.filter(item =>
-        tagAppareils.length > 0 ? tagAppareils.every(element => item.appliance.toLowerCase().includes(element.toLowerCase())) : true
+    const resultApp = resultIngre.filterTheo(item =>
+        tagAppareils.length > 0 ? tagAppareils.everyTheo(element => item.appliance.toLowerCase().includesTheo(element.toLowerCase())) : true
     );
     console.log(resultApp)
-    const resultUst = resultApp.filter(item =>
-        tagUstensils.length > 0 ? tagUstensils.every(element => item.ustensils.some(elt => elt.toLowerCase().includes(element.toLowerCase()))) : true
+    const resultUst = resultApp.filterTheo(item =>
+        tagUstensils.length > 0 ? tagUstensils.everyTheo(element => item.ustensils.someTheo(elt => elt.toLowerCase().includesTheo(element.toLowerCase()))) : true
     );
     console.log(resultUst)
     CardPlat(resultUst);
@@ -202,11 +202,11 @@ console.log(resultIngre)
 export function retirerTagIngredient() {
     var chooseTag = document.querySelector('#choose-ingredient');
     let IngreItems = document.querySelectorAll(".ingr");
-    IngreItems.forEach((item, i) => {
+    IngreItems.forEachTheo((item, i) => {
         item.addEventListener("click", (event) => {
             chooseTag.innerHTML = '';
-            dataIngredients.splice(i, 1);
-            dataIngredients.forEach(item => {
+            dataIngredients.spliceTheo(i, 1);
+            dataIngredients.forEachTheo(item => {
                 chooseTag.innerHTML += `<span class="bg-primary card-tag-choose"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
             })
             console.log(dataIngredients)
@@ -219,11 +219,11 @@ export function retirerTagIngredient() {
 export function retirerTagAppareil() {
     var chooseTag = document.querySelector('#choose-appareil');
     let AppItems = document.querySelectorAll(".app");
-    AppItems.forEach((item, i) => {
+    AppItems.forEachTheo((item, i) => {
         item.addEventListener("click", (event) => {
             chooseTag.innerHTML = '';
-            dataAppareils.splice(i, 1);
-            dataAppareils.forEach(item => {
+            dataAppareils.spliceTheo(i, 1);
+            dataAppareils.forEachTheo(item => {
                 chooseTag.innerHTML += `<span class="bg-primary card-tag-choose"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
             })
             console.log(dataAppareils)
@@ -236,11 +236,11 @@ export function retirerTagAppareil() {
 export function retirerTagUstensil() {
     var chooseTag = document.querySelector('#choose-ustensil');
     let UstItems = document.querySelectorAll(".ust");
-    UstItems.forEach((item, i) => {
+    UstItems.forEachTheo((item, i) => {
         item.addEventListener("click", (event) => {
             chooseTag.innerHTML = '';
-            dataUstensils.splice(i, 1);
-            dataUstensils.forEach(item => {
+            dataUstensils.spliceTheo(i, 1);
+            dataUstensils.forEachTheo(item => {
                 chooseTag.innerHTML += `<span class="bg-warning card-tag-choose"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
             })
             ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);

@@ -1,9 +1,16 @@
+// import './methode-javascript/every-theo.js';
+// import './methode-javascript/filter-theo.js';
+// import './methode-javascript/forEach-theo.js';
+// import './methode-javascript/includes-theo.js';
+// import './methode-javascript/push-theo.js';
+// import './methode-javascript/some-theo.js';
+// import './methode-javascript/splice-theo.js';
 
 export function CardPlat(recipes) {
     var data = document.getElementById('data');
     var card = ''
     if(recipes && recipes.length>0) {
-      recipes.forEach(function(elt) {
+      recipes.forEachTheo(function(elt) {
         card = `<div class="col-md-4">
         <div class="card mb-3">
             <div class="card-header bg-secondary" style="height: 12rem;"></div>
@@ -37,7 +44,7 @@ export function CardPlat(recipes) {
 
 export function listIngredients(ingredients) {
     var ingredientsHtml = ""; // variable qui va contenir les balises li générées
-    ingredients.forEach(function(elt) {
+    ingredients.forEachTheo(function(elt) {
       ingredientsHtml += `<li>${elt.ingredient}</li>`;
     });
     return ingredientsHtml; // on retourne la variable qui contient les balises li générées

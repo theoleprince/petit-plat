@@ -6,10 +6,10 @@ export function rechercheGenerale(recipesData) {
     searchGeneral.addEventListener("keyup", (event) => {
         if(event.target.value.length >= 3) {
             data.innerHTML = '';
-            const result = recipesData.filter(item => 
-                item.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
+            const result = recipesData.filterTheo(item => 
+                item.name.toLowerCase().includesTheo(event.target.value.toLowerCase()) ||
                 item.description.toLowerCase().includes(event.target.value.toLowerCase()) ||
-                item.ingredients.some(elt => elt.ingredient.toLowerCase().includes(event.target.value.toLowerCase()))
+                item.ingredients.someTheo(elt => elt.ingredient.toLowerCase().includesTheo(event.target.value.toLowerCase()))
            );
            CardPlat(result);
            ingredients(result);
