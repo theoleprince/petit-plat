@@ -74,7 +74,7 @@ export function selectTag() {
             data.push(item);
         }
         data.forEach(item => {
-            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+            chooseTag.innerHTML += `<span class="bg-primary card-tag-choose"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
         })
         dataIngredients = data;
         ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
@@ -108,6 +108,7 @@ export function selectTagAppareil() {
     var selectTagIng = document.querySelector('#option-appareil');
     var chooseTag = document.querySelector('#choose-appareil');
     var data = [];
+    var cpt = 0;
     selectTagIng.addEventListener("click", (event) => {
         chooseTag.innerHTML = '';
         const item = event.target.outerText;
@@ -115,7 +116,8 @@ export function selectTagAppareil() {
             data.push(item);
         }
         data.forEach(item => {
-            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" id=app-${cpt} onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+            cpt +=1
         })
         dataAppareils = data;
         ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
@@ -150,6 +152,7 @@ export function selectTagUstensil() {
     var selectTagIng = document.querySelector('#option-ustensil');
     var chooseTag = document.querySelector('#choose-ustensil');
     var data = [];
+    var cpt = 0;
     selectTagIng.addEventListener("click", (event) => {
         chooseTag.innerHTML = '';
         const item = event.target.outerText;
@@ -157,8 +160,9 @@ export function selectTagUstensil() {
             data.push(item);
         }
         data.forEach(item => {
-            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" onclick="retirerTag(item)"  aria-hidden="true"></i>`;
-        })
+            chooseTag.innerHTML += item + ` <i class="fa fa-times-circle" id=ust-${cpt} onclick="retirerTag(item)"  aria-hidden="true"></i>`;
+            cpt +=1;
+        });
 
         dataUstensils = data;
         ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
@@ -170,37 +174,60 @@ export function ActualiseGeneraleByTag(ingredientsData, appareilsData, ustensils
    let tagIngredients = Array.from(ingredientsData)
    let tagAppareils = Array.from(appareilsData)
    let tagUstensils = Array.from(ustensilsData)
-    console.log(`Ingredient ${tagIngredients}, Appareils ${tagAppareils}, Ustensils ${tagUstensils}`)
     var data = document.getElementById('data');
     var dataRecipes = recipes;
     data.innerHTML = '';
     const resultIngre = dataRecipes.filter(item =>
         tagIngredients.length > 0 ?  tagIngredients.every(element => item.ingredients.some(elt => elt.ingredient.toLowerCase().includes(element.toLowerCase()))) : true
     );
-    console.log('resultIngre', resultIngre)
-
+console.log(resultIngre)
     const resultApp = resultIngre.filter(item =>
         tagAppareils.length > 0 ? tagAppareils.every(element => item.appliance.toLowerCase().includes(element.toLowerCase())) : true
     );
-    console.log('resultApp', resultApp)
-
+    console.log(resultApp)
     const resultUst = resultApp.filter(item =>
         tagUstensils.length > 0 ? tagUstensils.every(element => item.ustensils.some(elt => elt.toLowerCase().includes(element.toLowerCase()))) : true
     );
-    console.log('resultUst', resultUst);
-
+    console.log(resultUst)
     CardPlat(resultUst);
     ingredients(resultUst);
     appareils(resultUst);
     ustensils(resultUst);
     rechercheGenerale(resultUst);
+    retirerTagIngredient();
 }
 
-export function retirerTag(data) {
-    console.log(data)
-    // var documentIDClose = document.querySelector(idClose);
-    // var documentIDChooseTag = document.querySelector(idChooseTag);
-    // documentIDClose.addEventListener("click", (event) => {
-    //     console.log(event)
-    // })
+export function retirerTagIngredient() {
+    var chooseTag = document.querySelector('#choose-ingredient');
+    let IngreItems = document.querySelectorAll(".ingr");
+    IngreItems.forEach((item, i) => {
+        item.addEventListener("click", (event) => {
+            chooseTag.innerHTML = '';
+            dataIngredients.splice(i, 1);
+            dataIngredients.forEach(item => {
+                chooseTag.innerHTML += `<span class="bg-primary card-tag-choose"> ${item} <i class="fa fa-times-circle ingr" data-media-name="${item}";  aria-hidden="true"></i></span>`;
+            })
+            console.log(dataIngredients)
+            ActualiseGeneraleByTag(dataIngredients, dataAppareils, dataUstensils);
+            
+        });
+    });
+    // for(let i=0; i < dataIngredients.length; i++){
+    //     document.querySelector('#ingr-'+i).addEventListener("click", (event) => {
+    //         const balise = document.querySelector('#ingr-'+i);
+    //         // balise.remove();
+    //         const name = balise.parentNode;
+    //         const data = removeTagData(dataIngredients, 'name')
+    //         ActualiseGeneraleByTag(data, dataAppareils, dataUstensils);
+    //     });
+    // }
+}
+
+export function removeTagData(data, index) {
+    const data_tags_by_filters = Array.from(data);
+    // if (data_tags_by_filters.includes(name)) {
+        // const index = data_tags_by_filters.indexOf(name);
+        data_tags_by_filters.splice(index, 1);
+    // }
+    return data_tags_by_filters;
 }

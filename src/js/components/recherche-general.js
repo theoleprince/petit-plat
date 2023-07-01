@@ -4,7 +4,6 @@ export function rechercheGenerale(recipesData) {
     var data = document.getElementById('data');
     var searchGeneral = document.getElementById('search-general');
     searchGeneral.addEventListener("keyup", (event) => {
-        console.log(event.target.value);
         if(event.target.value.length >= 3) {
             data.innerHTML = '';
             const result = recipesData.filter(item => 

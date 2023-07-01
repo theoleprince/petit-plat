@@ -1,7 +1,6 @@
 
 export function CardPlat(recipes) {
     var data = document.getElementById('data');
-    console.log(recipes)
     var card = ''
     if(recipes && recipes.length>0) {
       recipes.forEach(function(elt) {
