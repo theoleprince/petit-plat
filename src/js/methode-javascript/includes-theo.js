@@ -1,8 +1,14 @@
 Array.prototype.includesTheo = function(searchElement, fromIndex) {
+  console.log(searchElement)
     // 1. Laisser O être ? 
     //    ToObject(this value).
     if (this == null) {
       throw new TypeError('"this" est nul ou non défini');
+    }
+
+    if (typeof searchElement == 'string') {
+      searchElement = [searchElement];
+      console.log(searchElement)
     }
   
     var o = Object(this);
@@ -56,4 +62,14 @@ Array.prototype.includesTheo = function(searchElement, fromIndex) {
     return false;
   };
 
-  // export default Array;
+  String.prototype.includesTheo = function(searchString, position) {
+    if (typeof position !== 'number') {
+      position = 0;
+    }
+  
+    if (position + searchString.length > this.length) {
+      return false;
+    }
+  
+    return this.indexOf(searchString, position) !== -1;
+  };

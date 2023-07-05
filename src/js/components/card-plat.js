@@ -1,11 +1,3 @@
-// import './methode-javascript/every-theo.js';
-// import './methode-javascript/filter-theo.js';
-// import './methode-javascript/forEach-theo.js';
-// import './methode-javascript/includes-theo.js';
-// import './methode-javascript/push-theo.js';
-// import './methode-javascript/some-theo.js';
-// import './methode-javascript/splice-theo.js';
-
 export function CardPlat(recipes) {
     var data = document.getElementById('data');
     var card = ''
