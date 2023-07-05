@@ -201,7 +201,7 @@ console.log(resultIngre)
 
 export function retirerTagIngredient() {
     var chooseTag = document.querySelector('#choose-ingredient');
-    let IngreItems = document.querySelectorAll(".ingr");
+    let IngreItems = Array.from(document.querySelectorAll(".ingr"));
     IngreItems.forEach((item, i) => {
         item.addEventListener("click", (event) => {
             chooseTag.innerHTML = '';
@@ -218,7 +218,7 @@ export function retirerTagIngredient() {
 
 export function retirerTagAppareil() {
     var chooseTag = document.querySelector('#choose-appareil');
-    let AppItems = document.querySelectorAll(".app");
+    let AppItems = Array.from(document.querySelectorAll(".app"));
     AppItems.forEach((item, i) => {
         item.addEventListener("click", (event) => {
             chooseTag.innerHTML = '';
@@ -235,7 +235,7 @@ export function retirerTagAppareil() {
 
 export function retirerTagUstensil() {
     var chooseTag = document.querySelector('#choose-ustensil');
-    let UstItems = document.querySelectorAll(".ust");
+    let UstItems = Array.from(document.querySelectorAll(".ust"));
     UstItems.forEach((item, i) => {
         item.addEventListener("click", (event) => {
             chooseTag.innerHTML = '';
